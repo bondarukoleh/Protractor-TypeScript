@@ -1,0 +1,47 @@
+{
+  "name": "protractor-typescript",
+  "version": "1.0.0",
+  "description": "Test framework with protractor.",
+  "main": "index.js",
+  "scripts": {
+    "start:driver": "webdriver-manager start",
+    "lint": "tslint -e './node_modules/' -p ./tsconfig.json",
+    "pretest": "npm run lint",
+    "test": "protractor ./protractor.conf.js",
+    "tsc": "tsc",
+    "tscw": "tsc -w",
+    "validate": "npm ls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bondarukoleh/protractor-typescript.git"
+  },
+  "author": "Oleh Bondaruk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bondarukoleh/protractor-typescript/issues"
+  },
+  "homepage": "https://github.com/bondarukoleh/protractor-typescript#readme",
+  "dependencies": {
+    "mocha": "^6.0.2",
+    "protractor": "^5.4.2",
+    "@types/chai": "^4.1.2",
+    "@types/mocha": "2.2.41",
+    "@types/node": "8.0.24",
+    "chai": "4.1.1",
+    "log4js": "^2.6.1",
+    "minimist": "^1.2.0",
+    "mocha-allure-reporter": "^1.4.0",
+    "moment": "^2.22.2",
+    "moment-timezone": "^0.5.17",
+    "precommit-hook": "^3.0.0",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "3.1.6",
+    "request-promise": "^4.2.2"
+  },
+  "pre-commit": [
+    "lint",
+    "tsc"
+  ]
+}

@@ -1,0 +1,4 @@
+* text=auto
+# Unix files (need LF)
+*.sh eol=lf
+*.bat eol=crlf
