@@ -23,22 +23,23 @@
   },
   "homepage": "https://github.com/bondarukoleh/protractor-typescript#readme",
   "dependencies": {
-    "mocha": "^6.0.2",
-    "protractor": "^5.4.2",
     "@types/chai": "^4.1.2",
     "@types/mocha": "2.2.41",
     "@types/node": "8.0.24",
     "chai": "4.1.1",
+    "jira-client": "^6.7.0",
     "log4js": "^2.6.1",
     "minimist": "^1.2.0",
+    "mocha": "^6.0.2",
     "mocha-allure-reporter": "^1.4.0",
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.17",
     "precommit-hook": "^3.0.0",
+    "protractor": "^5.4.2",
+    "request-promise": "^4.2.2",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
-    "typescript": "3.1.6",
-    "request-promise": "^4.2.2"
+    "typescript": "3.1.6"
   },
   "pre-commit": [
     "lint",
