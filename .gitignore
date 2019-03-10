@@ -3,6 +3,7 @@ package-lock.json
 .idea
 .vscode
 allure-results
+allure-report
 .jshintrc
 .jshintignore
 build

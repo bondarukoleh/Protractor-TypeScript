@@ -1,24 +1,24 @@
 import * as rp from 'request-promise'
 import * as querystring from 'querystring'
-import getLogger from '../../helpers/logger'
+import { getLoggerInstance } from '../../helpers'
 
 const commonHeader = { 'Content-Type': 'application/json' }
-const log = getLogger({ name: 'Rest client' })
+const log = getLoggerInstance({ name: 'Rest client' })
 
 interface IRequest {
   options?: object,
   url: string,
   query?: object
-} 
+}
 
 class RestClient {
-  public async GET({options, url, query}: IRequest) {
-    const optionsToSend = this.prepareOptions({options, method: 'GET', url, query});
+  public async GET({ options, url, query }: IRequest) {
+    const optionsToSend = this.prepareOptions({ options, method: 'GET', url, query });
     return this.sendRequest(optionsToSend);
   }
 
-  public async POST({options, url}: IRequest) {
-    const optionsToSend = this.prepareOptions({options, method: 'POST', url, query: null});
+  public async POST({ options, url }: IRequest) {
+    const optionsToSend = this.prepareOptions({ options, method: 'POST', url, query: null });
     return this.sendRequest(optionsToSend);
   }
 
@@ -33,13 +33,12 @@ class RestClient {
     }
   }
 
-  private prepareOptions({options, method, url, query}) {
+  private prepareOptions({ options, method, url, query }) {
     options.method = method;
-    options.headers = options.headers ? Object.assign(options.headers, commonHeader) : commonHeader;
+    options.headers = options.headers ? Object.assign(commonHeader, options.headers) : commonHeader;
     options.url = url;
     if (query) {
-      // @ts-ignore
-      options.url += `?${querystring(query)}`;
+      options.url += `?${querystring.stringify(query)}`;
     }
     options.json = true;
     return options;
@@ -57,4 +56,4 @@ class RestClient {
   }
 }
 
-export { RestClient }
+export { RestClient, IRequest }

@@ -1,6 +1,6 @@
 import { configure, getLogger } from 'log4js'
 
-export default function getLoggerInstance({ name = 'Logger', level = 'info', color = true }) {
+function getLoggerInstance({ name = 'Logger', level = 'info', color = true }) {
   configure({
     appenders: {
       out: {
@@ -18,3 +18,5 @@ export default function getLoggerInstance({ name = 'Logger', level = 'info', col
 
   return getLogger(name);
 }
+
+export { getLoggerInstance }

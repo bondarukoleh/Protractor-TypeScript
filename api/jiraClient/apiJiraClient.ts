@@ -1,6 +1,9 @@
 import * as JiraApi from 'jira-client'
 import * as fs from 'fs'
 import * as path from 'path'
+import {getLoggerInstance} from '../../helpers'
+
+const log = getLoggerInstance({ name: 'Jira client' })
 
 enum IssueInfoEnum {
   description = 'description',
@@ -15,10 +18,12 @@ class JiraApiClient {
   }
 
   public async getIssue(issueNumber: string): Promise<any> {
+    log.info(`Getting jira issue: "${issueNumber}"`)
     return this.jiraClientInstance.findIssue(issueNumber)
   }
 
   public async getIssueField({issueNumber, fieldName}: {issueNumber: string, fieldName: IssueInfoEnum}): Promise<any> {
+    log.info(`Getting jira issue field: "${fieldName}", from number: "${issueNumber}"`)
     const issue = this.getIssue(issueNumber)
     return issue[fieldName]
   }
