@@ -1,3 +1,4 @@
+/* To make page functions like steps during execution, with screenshots and logging */
 import {ElementFinder} from 'protractor'
 import {takeScreenshot, getLoggerInstance} from '../index'
 import * as argsParser from 'minimist'
