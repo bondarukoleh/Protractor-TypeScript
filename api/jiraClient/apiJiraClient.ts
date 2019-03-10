@@ -14,7 +14,7 @@ class JiraApiClient {
     this.jiraClientInstance = this.initializeJiraClient({host, username, password})
   }
 
-  public async getIssue(issueNumber: string): Promise<object> {
+  public async getIssue(issueNumber: string): Promise<any> {
     return this.jiraClientInstance.findIssue(issueNumber)
   }
 
@@ -40,7 +40,7 @@ export { JiraApiClient, IssueInfoEnum }
 const issueID = 'someIssueID';
 const jiraClient = new JiraApiClient({host: 'host', username: 'username', password: 'password'})
 
-const getIssue = async function (issue) {
+const getIssue = async function (issue: string): Promise<void> {
   const gotIssue = await jiraClient.getIssue(issue)
   const pathToFile = path.resolve(process.cwd(), `./${issue}.json`)
   fs.writeFileSync(pathToFile, JSON.stringify(gotIssue))

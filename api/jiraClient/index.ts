@@ -1,1 +1,1 @@
-export * from './apiJiraClient'
+export * from './ApiJiraClient'

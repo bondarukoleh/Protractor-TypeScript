@@ -3,8 +3,8 @@
     "module": "commonjs",
     "target": "es2017",
     "sourceMap": true,
-    "mapRoot": "built",
-    "outDir": "built",
+    "mapRoot": "build",
+    "outDir": "build",
     "experimentalDecorators": true,
     "lib": [
       "dom",
