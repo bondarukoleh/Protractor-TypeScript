@@ -1,5 +1,7 @@
 import { browser, Config } from 'protractor'
 
+const {SPEC_REPORTER} = process.env
+
 const config: Config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
   // seleniumSessionId: ,
@@ -7,7 +9,7 @@ const config: Config = {
   mochaOpts: {
     timeout: 350 * 1000,
     fullTrace: true,
-    reporter: 'mocha-allure-reporter'
+    reporter: SPEC_REPORTER ? 'spec' : 'mocha-allure-reporter'
   },
   specs: ['./specs/**/*.spec.*'],
   baseUrl: 'http://www.google.com',

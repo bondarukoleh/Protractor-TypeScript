@@ -1,14 +1,15 @@
 /* To make page functions like steps during execution, with screenshots and logging */
-import {ElementFinder} from 'protractor'
-import {takeScreenshot, getLoggerInstance} from '../index'
+import { ElementFinder } from 'protractor'
+import { takeScreenshot, getLoggerInstance } from '../index'
 import * as argsParser from 'minimist'
+const { SPEC_REPORTER } = process.env
 
 declare const allure: any
-const reporter = allure._allure
 const ENV_ARGS = argsParser(process.argv.slice(2))
 
 function stepAllure(title: string) {
   return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    const reporter = allure._allure
     const originalFunction = descriptor.value
 
     descriptor.value = async function (...args) {
@@ -18,17 +19,17 @@ function stepAllure(title: string) {
       reporter.startStep(title, Date.now())
       argsWithoutElementFinder.forEach((arg, index) => {
         const argument = JSON.stringify(arg)
-        allure.createAttachment(`Argument[${index}]`, argument, 'application/json')  
+        allure.createAttachment(`Argument[${index}]`, argument, 'application/json')
       })
 
       try {
         const result = await originalFunction.apply(this, originalArgs)
-        await takeScreenshot()
+        if (!ENV_ARGS.local) { await takeScreenshot() }
         reporter.endStep('passed', Date.now())
         return result
       } catch (e) {
         allure.createAttachment('ERROR', e.toString(), 'text/plain')
-        await takeScreenshot('Error')
+        if (!ENV_ARGS.local) { await takeScreenshot('Failed step') }
         if (e.toString().includes('AssertionError')) {
           reporter.endStep('failed', Date.now())
         } else {
@@ -41,14 +42,14 @@ function stepAllure(title: string) {
   }
 }
 
-function stepStub (title: string) {
+function stepStub(title: string) {
   return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     const originalFunction = descriptor.value
 
     descriptor.value = async function (...args) {
       const originalArgs = args
       const argsWithoutElementFinder = args.filter((el) => !(el instanceof ElementFinder))
-      const log = getLoggerInstance({name: 'Page step'})
+      const log = getLoggerInstance({ name: 'Page step' })
       log.info('method name: ', originalFunction.name)
       log.info('method args: ', JSON.stringify(argsWithoutElementFinder))
 
@@ -62,4 +63,4 @@ function stepStub (title: string) {
   }
 }
 
-export const step = ENV_ARGS.local ? stepStub : stepAllure
+export const step = SPEC_REPORTER ? stepStub : stepAllure

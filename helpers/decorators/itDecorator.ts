@@ -1,8 +1,9 @@
-declare const allure 
+declare const allure
+const { SPEC_REPORTER } = process.env
 
 function getItCallBackDecorated(testCaseID: string, itName: string, fn: any) {
   return async () => {
-    allure.addLabel('testId', testCaseID)
+    if (!SPEC_REPORTER) { allure.addLabel('testId', testCaseID) }
     try {
       await fn()
     } catch (e) {
@@ -16,18 +17,25 @@ function getItCallBackDecorated(testCaseID: string, itName: string, fn: any) {
   }
 }
 
-const itDecorator: {it: (testCaseID: string, itName: string, fn: any) => void} = {it: null};
-
-itDecorator.it = function (testCaseID: string, itName: string, fn: any) {
-  it(itName, getItCallBackDecorated(testCaseID, itName, fn))
+type ItType = (testCaseID: string, itName: string, fn: any) => any
+interface ItDecorator {
+  (testCaseID: string, itName: string, fn: any): any
+  only: ItType
+  skip: ItType
 }
-// @ts-ignore
-itDecorator.it.only = function (testCaseID: string, itName: string, fn: any) {
+
+const itDecorated = (function (testCaseID, itName, fn) {
+  it(itName, getItCallBackDecorated(testCaseID, itName, fn))
+}) as ItDecorator
+
+itDecorated.only = function (testCaseID: string, itName: string, fn: any) {
   it.only(itName, getItCallBackDecorated(testCaseID, itName, fn))
 }
-// @ts-ignore
-itDecorator.it.skip = async function (testCaseID: string, itName: string, fn: any) {
+
+itDecorated.skip = function (testCaseID: string, itName: string, fn: any) {
   it.skip(itName, getItCallBackDecorated(testCaseID, itName, fn))
 }
 
-export {itDecorator}
+const itDecoration = { it: itDecorated }
+
+export { itDecoration }
