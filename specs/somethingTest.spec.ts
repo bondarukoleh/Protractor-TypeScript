@@ -12,6 +12,6 @@ describe('Suite 1', () => {
      {asd: '12123', sad: {asdas: 'asdas'}, afsf: ['asda', 'asdas']}, element(by.id('main')))
     await browser.sleep(2000)
     await assertion('Check that true is true',
-     async () => expect(false).to.equal(true, `True should be ture`))
+     async () => expect(true).to.equal(true, `True should be ture`))
   })
 })
