@@ -2,8 +2,8 @@
 import { ElementFinder } from 'protractor'
 import { takeScreenshot, getLoggerInstance } from '../index'
 import * as argsParser from 'minimist'
-const { SPEC_REPORTER } = process.env
 
+const { SPEC_REPORTER } = process.env
 declare const allure: any
 const ENV_ARGS = argsParser(process.argv.slice(2))
 
