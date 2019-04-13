@@ -7,7 +7,8 @@ Protractor is using selenium-webdriver(WebDriverJS) under the hood.
 So as it was said, selenium is a bindings, WebDriverJS - the JavaScript bindings for the Selenium WebDriver API
 calls (on Json Wire Protocol) to browser driver, which can speak to browser itself and make some actions.
 
-*Json Wire Protocol - protocol that defines a RESTfull web service using JSON over HTTP
+*Json Wire Protocol - protocol that defines a RESTfull web service using JSON over HTTP. It's a set of commands
+that webdriver (chromedriver, geckodriver, IEdriver) shall implement to be compatible with Selenium.
 
 *Browser driver is a server that uses Json Wire Protocol to speak with Selenium, and using native OS api calls to 
 speak to browser. That's why we have browser drivers depend on OS.
@@ -21,4 +22,97 @@ browser do the action, and return the result of it to driver -> driver packs res
 selenium gets the result.
 
 
+Waiters:
+Implicit - set one time, browser.manage().timeouts().implicitlyWait(2000), fired before each findElement
+it will be polling for condition with set time, and if time is ran out - fail
+Nice - if elements appeared in DOM in 1-3 seconds, you don't need to se explicit waiter each time.
+Bad - checks that element is not present - cost implicit wait time.
 
+Explicit - browser.wait(() => myElement.isPresent(), 5000, ‘Element not found’), so some predicate function,
+there are some default predicates - ExpectedConditions in selenium.
+You need to set up it each time before you need to wait for some condition, but it much more flexible.
+Nice: use it.
+Bad: don't mess it with implicit waiter. There are a tricky situation when implicit wait is 4 second, and explicit is
+5, when implicit waiter done, it will see that explicit is not done and goes another round, which will cost us
+extra 3 seconds to wait.
+
+Exceptions:
+NoSuchElementException
+NoSuchWindowException
+NoSuchFrameException
+NoAlertPresentException
+InvalidSelectorException
+ElementNotVisibleException
+ElementNotSelectableException
+TimeoutException
+NoSuchSessionException
+StaleElementReferenceException
+
+StaleElementReferenceException:
+Navigation to another page
+DOM has refreshed
+A frame or window switch
+Means that you searched the element by locator, and got in response his DOM element UUID.
+somehow element was changed (UUID too), after when we try to click on element - we will use it UUID
+to click on it, since it was changed - we cannot click on it anymore.
+
+Fixes: find element exactly before click, or use wrappers on search, that will do the same thing.
+LazySearch as it called.
+
+
+
+Mocha
+Javascript test running framework.
+run 'mocha spec.js'
+|
+spawn child process
+|
+|--------------> inside child process
+  process and apply options
+  |
+  run spec file/s
+  |
+  |--------------> per spec file
+    suite callbacks (e.g., 'describe')
+    |
+    'before' root-level pre-hook
+    |
+    'before' pre-hook
+    |
+    |--------------> per test
+      'beforeEach' root-level pre-hook
+      |
+      'beforeEach' pre-hook
+      |
+      test callbacks (e.g., 'it')
+      |
+      'afterEach' post-hook
+      |
+      'afterEach' root-level post-hook
+    |<-------------- per test end
+    |
+    'after' post-hook
+    |
+    'after' root-level post-hooks
+  |<-------------- per spec file end
+|<-------------- inside child process end
+
+chai - assertion library.
+Asynchronous code with done() if then is using.
+Arrow functions loose mocha context, you cannot set this.timeout(), this.retries(), this.currentTest.title for example,
+if you don't need it - it's ok.
+
+So difference between Jasmine and Mocha.
+Jasmine older, full packed test framework, without dependencies. Easy to setup, and start to test.
+Has it's own assertion library. Jasmine has jasmine.createSpy() method, that make a test doubles of some functionality
+that we need to test, but don't want to touch origin one - we making some stubs on functions and objects. But we cannot
+create fake servers.
+
+Mocha is younger, not so full packed, but provide a lot of features to configure. use external assertion libraries.
+Mocha has no spy object methods, but we can use SinonJS spuOn for that purpose, also with it we can create fake servers
+and a lot of stuff with it. We can create a fake server, so when test will call some predefined methods - fake guy will
+respond as a real one.
+
+Selenoid is a lightweight version of Selenium standalone server. It written on go, and don't need JDK.
+Go Grid router - is a lightweight version of selenium grid. If you need scalable, cross-platform, multi-parallel
+testing Selenoid + GGR - like Arnold in Predator.

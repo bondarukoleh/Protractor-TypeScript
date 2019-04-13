@@ -1,4 +1,4 @@
-import { browser, Config } from 'protractor'
+import {browser, Config} from 'protractor'
 import * as minimist from 'minimist'
 
 const {SPEC_REPORTER, SELENIUM_ADDRESS} = process.env
@@ -44,9 +44,9 @@ const config: Config = {
     //       'browser.download.manager.showWhenStarting': false,
     //       'browser.helperApps.alwaysAsk.force': false,
     //       'browser.download.manager.useWindow': false,
-          /* tslint:disable */
+    /* tslint:disable */
     //       'browser.helperApps.neverAsk.saveToDisk': 'application/octet-stream, application/msword, application/json, text/comma-separated-values, text/csv, text/tab-delimited-values, application/csv, application/excel, application/vnd.ms-excel, application/vnd.msexcel, text/anytext, text/plaintext, application/x-www-form-urlencoded, application/xlsx, binary/octet-stream, text/binary, application/zip, application/rtf, image/png, image/jpeg, application/pdf'
-          /* tslint:enable */
+    /* tslint:enable */
     //     }
     //   }
     // }
@@ -56,8 +56,8 @@ const config: Config = {
   onPrepare: async () => {
     await browser.waitForAngularEnabled(false)
     await browser.manage().window().maximize()
-    browser.ignoreSynchronization = true;
+    browser.ignoreSynchronization = true; // Don't wait for angular finish work
   },
 }
 
-export { config }
+export {config}
