@@ -1,10 +1,13 @@
 import { browser, Config } from 'protractor'
+import * as minimist from 'minimist'
 
-const {SPEC_REPORTER} = process.env
+const {SPEC_REPORTER, SELENIUM_ADDRESS} = process.env
+const ENV_ARGS = minimist(process.argv.slice(2))
 
 const config: Config = {
-  seleniumAddress: 'http://localhost:4444/wd/hub',
+  seleniumAddress: SELENIUM_ADDRESS ? SELENIUM_ADDRESS : 'http://localhost:4444/wd/hub',
   // seleniumSessionId: ,
+  directConnect: ENV_ARGS.direct ? true : false,
   framework: 'mocha',
   mochaOpts: {
     timeout: 350 * 1000,
