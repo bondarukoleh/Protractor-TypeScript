@@ -97,7 +97,6 @@ spawn child process
   |<-------------- per spec file end
 |<-------------- inside child process end
 
-chai - assertion library.
 Asynchronous code with done() if then is using.
 Arrow functions loose mocha context, you cannot set this.timeout(), this.retries(), this.currentTest.title for example,
 if you don't need it - it's ok.

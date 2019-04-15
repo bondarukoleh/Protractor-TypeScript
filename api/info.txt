@@ -1,0 +1,74 @@
+Representational State Transfer.
+Restfull api principles:
+1. Stateless. No data about client context is stored on server side. Each request has enough information to process
+it. Client app - is staful, session state is stored on the client side.
+2. Cashing. Clients, and proxy hosts, can cash information. In client's request should be headers that allows or 
+not allows cashing, or to get response from cashed information. Improve performance.
+Can be controled by headers: Date, Last Modified, Expires, Age, Cache-Control(Public, Private, no-cache/no-store,
+max-age, proxy-validate).
+3. Uniform Interface between client and server.
+So server and client can be developed independed, but it should follow the rules:
+  1) Resource identifiers: Each resourse has unic ID URI (Uniform Resource Identifier) witch is a part of URL (locator)
+   Each resource has his URI and verbs (methods) to interoperate with it.
+  2) Manipulation resoures thru presentations. Resources is separated from resource presentation, that returned to
+  client. So server can store resource in XML, but return it in JSON, or HTML or any other.
+4. Layered architecture. Architecture can contein proxy servers like cashing, load balansers, authentificateors, 
+that should stayed invisible for client. (like miscroservices)
+5. Know only API. Back realisation of client and server could be easily changed since Interface
+stayes the same. Client should know only API and that's it.
+
+Resourses in REST.
+Unic data, with unic URI. It can be collection of elements, ore one element.
+URI - is identifier of the resource, for exaple name, URI not always could be a URL, becouse for example name only
+gives information about who you are, not where are you. URI can be name and locator and both, but not always.
+URL - is locator, it is address. So all URLs are URIs. URL has following format: Protocol://ServiceName/ResourceType/ResourceID
+URN - Unifor resorce name, it's a URI but presenting only name of resource.
+
+The query parameter approach works just fine and REST does not stop you from using query parameters. 
+E.g. http://MyService/Persons/1?format=json&encoding=UTF8
+
+Each resource processed with a few verbs.
+GET/POST/PUT/PATCH/DELETE/HEAD
+
+GET/PUT/DELETE - idempotent - result of request is always the same.
+GET/OPTIONS/HED - safe - requests don't affect the resource.
+
+HTTP request has:
+<VERB>, <URI>, <HTTP verion>
+<Request header>
+<Request bode>
+
+Request header - contains the metadata as a collection of key-value pairs of headers and their values.
+These settings contain information about the message and its sender like client type, the formats client supports,
+format type of the message body, cache settings for the response, and a lot more information.
+Request Body - is the actual message content. In a RESTful service, that's where the representations of resources
+sit in a message. There are no tags or markups to denote the beginning or end of a section in an HTML message.
+
+HTTP response has:
+<HTTP verion>, <Response code>
+<Response header>
+<Response bode>
+
+Response code - 3 digits status of the request.
+1xx - thing is ok so far, processing request (continue, swiching protocol, etc.) 
+2xx - successfull response (200 - ok, 201 - created, etc.)
+3xx - redirection (300 - multiple choise, 301 - moved resource, etc.)
+4xx - client error (400 - bad request, 401 - unauthoraised, 403 - forbitten, 404 - not found, etc.)
+5xx - server error (500 - internal server error, 501 - not implemented, etc.)
+Response Header - contains the metadata and settings about the response message.
+Response Body - contains the representation if the request was successfull.
+
+
+SOAP API.
+SOAP envelope - “конверт”, envelope that represent SOAP message. 
+SOAP header - explanes extra information about message, address, format.
+SOAP body - message itself, presenting request and response from server. (XML формат)
+Fault element which contains errors and status information.
+
+WSDL – Web Service Description Language
+SOAP – Simple Object Access Protocol
+UDDI – Universal Description, Discovery and Integration
+RDF – Resource Description Framework
+
+
+Tools like: Postman, fiddler, JMeter, Gatling, SoapUI.
