@@ -1,0 +1,131 @@
+Testing - check consistency of behaviour SW between required and actual, process of increasing SW quality, realized via 
+running scope of tests chosen by some strategy. testing - one of technics of quality control includes phases of planing, 
+(test management), writing tests(test design), running tests (test execution), and analyze results (test analysis).
+
+Software quality - characteristic that includes consistency of SW behaviour compared with created and supposed requirements.
+
+SDLC - software development life cycle. 
+1. Requirement analysis.
+2. Design & Architecture. (Planning, mockups, GUI design)
+3. Development & Coding.
+4. QA & SW testing. (Planning, test design, test execution, analysis)
+5. Implementation. (Release, deployment)
+6. Maintenance & Support.
+
+Test process cycle.
+1. Test planning. (testing scope, approach, researching, scheduling)
+2. Test analysis and design. (risks, requirements, features to test, test design)
+3. Test implementation and Execution (develop and prioritise, creating test suites, execution, re-testing, regression)
+4. Evaluating exit criteria (reporting, and analysis test results)
+5. Test closure activities (improving, work analysis)
+
+Requirements analysis.
+BRD - business requirement document.
+Good requirement characteristics:
+- correctness
+- clarity
+- fullness
+- consistency
+- checkability
+- traceability
+- modifiablity
+- priority
+
+Traceability Matrices - tool that help to check test coverage.
+
+Test analytic says what to be tested, test designer says how.
+
+Test plan.
+1. Identifier
+2. Overview
+3. Testing environment (hard/software, configuration, test data)
+4. Test scope (features to be tested / not tested)
+5. Strategy/Approach
+6. Success/Failure criteria
+7. Suspension criteria
+8. Testing results (artifacts of testing, report)
+9. Assignments and responsibilities
+10. Schedule
+11. Risk management
+12. Approvals
+
+Quality criteria for TC:
+1. accurate (checks what it has been created for)
+2. irredundant (short and minimal)
+3. repeatable
+4. traceble
+5. clear
+6. simple
+7. self standing
+
+Testing principles:
+1. Testing shows presence of bugs, not their absence
+2. Early testing
+3. We cannot test everything in 100%
+4. Defects gathering
+5. Pesticide paradox
+6. Testing is context dependent
+7. Absence of bugs confuse.
+
+Testing types:
+1. Functional:
+    - GUI
+    - Functional testing
+    - Security
+    - Interoperability (configuration, installation, cross browser, cross platform)
+2. Non-functional
+    - Performance:
+        1) Load (normal and variable load)
+        2) Stress (max load)
+        3) Spike (over the maximum)
+        4) Stability (norm load required period of time)
+        5) Performance profiling (CPU/Memory usage, response time)
+        6) Volume (floating with big amount of data)
+
+By access to code:
+- Whitebox
+- Blackbox
+- Greybox
+
+By code execution:
+- Static
+- Dynamic
+
+Test stages:
+- Unit
+- Integration
+- System
+- Acceptance
+
+Test phases:
+- BVT
+- New functionality testing
+- Regression testing
+- Smoke testing
+
+Testing techniques:
+- Positive/negative
+- Equivalence partitioning
+- Boundary values
+- Pairwise testing
+- Control flow based
+- Decisions table (conditions vs actions, we clearly see what actions should fire what conditions)
+- Experience based (error guessing, exploratory testing)
+
+Testing documentation:
+- test plan
+- test case
+- traceability matrices
+- checklist
+- bug report (severity, how bug affects product functionality - by tester, priority,
+ how bug is needed for business - by product owner)
+
+Development methodologies:
+1.Agile (scrum, kanban)
+2. Waterfall
+3. V - model
+
+
+
+
+
