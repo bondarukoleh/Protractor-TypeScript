@@ -1,11 +1,10 @@
 import { browser, element, by } from 'protractor'
 import { expect } from 'chai'
 import { pages } from '../pages/pageObjects'
-import { itDecoration, assertion } from '../helpers/decorators'
+import { it, assertion } from '../helpers/decorators'
 
 describe('Suite 1', () => {
   const { googlePage } = pages
-  const { it } = itDecoration
 
   it('CaseID1', 'Test 1', async () => {
     await googlePage.getGoogle('STRING PARAM',

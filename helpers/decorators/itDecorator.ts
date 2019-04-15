@@ -36,6 +36,4 @@ itDecorated.skip = function (testCaseID: string, itName: string, fn: any) {
   it.skip(itName, getItCallBackDecorated(testCaseID, itName, fn))
 }
 
-const itDecoration = { it: itDecorated }
-
-export { itDecoration }
+export { itDecorated as it }
