@@ -47,11 +47,23 @@ URN - Unifor resorce name, it's a URI but presenting only name of resource.
 The query parameter approach works just fine and REST does not stop you from using query parameters. 
 E.g. http://MyService/Persons/1?format=json&encoding=UTF8
 
-Each resource processed with a few verbs.
+Each resource processed with a few verbs, methods.
 GET/POST/PUT/PATCH/DELETE/HEAD
 
-GET/PUT/DELETE - idempotent - result of request is always the same.
-GET/OPTIONS/HED - safe - requests don't affect the resource.
+There are:
+safe - means requests don't affect the resource.
+idempotent - result of request is always the same.
+cacheable - let's cache the result
+
+
+GET/PUT/DELETE - idempotent
+GET/OPTIONS/HED - safe
+
+POST - we using mostly to create data, or update data that we don't know exactly.
+PUT - here we should send all data of resource, with field we want to change, if there was no such field - we'll create
+  it, if there was - re-write it.
+PATCH - we send only id, and field we want to change, that's it.
+
 
 HTTP request has:
 <VERB>, <URI>, <HTTP verion>
@@ -125,7 +137,7 @@ How it works?
 
 Pros:
 - duplex
-- no headers, cockie.
+- no headers, cookie.
 - works on same as http ports.
 
 Cons:
@@ -133,3 +145,92 @@ Cons:
 - always open connection eats resources bandwidth (пропускная способность)
 
 npm library - socket.io.
+
+HTTP - hyper text transfer protocol
+
+request:
+----------------------
+POST /booking HTTP 1.1  - verb, resource, protocol
+----------------------
+Host: api.booking.com   - headers
+Accept: application/json (means I want back data in json)
+Content-type: application/json (means I send you the data in json)
+Content-length: 136
+----------------------
+{
+  "room_id": "400",     - body
+  "breakfast":"true"
+}
+----------------------
+
+response
+----------------------
+HTTP 1.1 201 Created            - verb, status code
+----------------------
+Content-location: /bookings/aij3no2i3   - headers
+Content-type: application/json
+Content-length: 192
+----------------------
+{
+  "id": "aij3no2i3",             - body
+  "status":"created"
+}
+----------------------
+
+PATCH example
+----------------------
+PATCH /booking/aij3no2i3 HTTP 1.1   - verb, resource, protocol
+----------------------
+Host: api.booking.com               - headers
+Content-type: application/json
+Content-length: 500
+----------------------
+[
+  {
+   <<op>>: <<replace>>,     (replace, remove, add, copy, test)
+   <<path>>:<</booking/aij3no2i3>>
+   <<value>>:<<{"breakfast":"true"}>>
+  },
+  {
+     "room_id": "400",     - body
+     "breakfast":"true"
+  }
+]
+
+----------------------
+
+So one of main ideas - is CRUD
+Read:
+GET - gets a resource in his body, response 200 OK
+
+Create:
+POST
+
+Update:
+PUT - send all data to update, returns 200 OK with full body, or if data is too big - header 204 No-content
+POST - send only fields that you need, but there is some trouble: we doing idempotent action (UPDATE), with non-idempotent
+  verb, that's not good, + we can delete something from hole collection, that could cost troubles. Better use
+PATCH - sends instructions in body how resource should be updated, updates only passed fields. Non-idempotent in front
+ of PUT. It can be idempotent, but not require to. For example we send :
+ {change: 'Name' from: 'benjamin franklin' to: 'john doe'}, second request will fail since it 'Name' is not
+ 'benjamin franklin' anymore, idempotent? I don't think so.
+
+Delete:
+DELETE - send in header URI - response 200 OK, idempotent but remember that state of resource won't change but status
+ can: 200/204/404/410 410(Preconditions failed, when you tried to search some resource and search failed for ex.)
+
+Headers:
+Content-location: location of created resource, URI, we can use it to interoperate with this resource, instead of getting it
+  once again, since POST returned URI and created resource in POST body - we don't need GET.
+Last-modified: when it was last updated.
+Date: when response was generated.
+E-tag: hash of resource, instead of sending the whole representation - we can response with hash.
+
+
+Few restrictions:
+- unknown headers ignored
+- duplicate headers not allowed
+- only one Content-type
+- Multi headers values separated by coma.
+
+In body if file is too long we cut it to chunks and set content-length of chunk.
