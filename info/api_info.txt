@@ -1,21 +1,41 @@
-Representational State Transfer.
+Representational State Transfer - is a software architectural style that defines a set of constraints to be used
+for creating Web services.
+
 Restfull api principles:
-1. Stateless. No data about client context is stored on server side. Each request has enough information to process
+1. Client - Server. Client for UI, and server for backend, data storage - divided logic, so the client and server
+can be developed in parallel and don't affect each other, sinse they talk thru api.
+2. Stateless. No data about client context is stored on server side. Each request has enough information to process
 it. Client app - is staful, session state is stored on the client side.
-2. Cashing. Clients, and proxy hosts, can cash information. In client's request should be headers that allows or 
+3. Cashing. Clients, and proxy hosts, can cash information. In client's request should be headers that allows or 
 not allows cashing, or to get response from cashed information. Improve performance.
 Can be controled by headers: Date, Last Modified, Expires, Age, Cache-Control(Public, Private, no-cache/no-store,
 max-age, proxy-validate).
-3. Uniform Interface between client and server.
-So server and client can be developed independed, but it should follow the rules:
+4. Uniform Interface between client and server. So server and client can be developed independed, but it should follow
+the rules:
   1) Resource identifiers: Each resourse has unic ID URI (Uniform Resource Identifier) witch is a part of URL (locator)
-   Each resource has his URI and verbs (methods) to interoperate with it.
+   Each resource has his URI and verbs (methods) to interoperate with it. And resourse drive data not data drive
+   resource. Means that resource (dynamic) /latest can hold v1/v2/v3 version of data not the oposite.
   2) Manipulation resoures thru presentations. Resources is separated from resource presentation, that returned to
-  client. So server can store resource in XML, but return it in JSON, or HTML or any other.
-4. Layered architecture. Architecture can contein proxy servers like cashing, load balansers, authentificateors, 
-that should stayed invisible for client. (like miscroservices)
-5. Know only API. Back realisation of client and server could be easily changed since Interface
-stayes the same. Client should know only API and that's it.
+  client. So server can store resource in XML, but return it in JSON, or HTML or any other. So client ask for  
+  /latestPresentation -> resource: document -> representation: text + html.
+  Content negotiation: means client should tell server what presentation he needs in Accept:text/plain, application/XML
+  and server responses with header Content-Type:text/plain, application/XML.
+  3) HATEOAS - Hypermedia as the Engine of Application State. Means further actions of client is depend on resource
+  state for example, client ask for account state, if account is ok - returned links are - get money, close account etc,
+  but if account is overdraft - only "put money in" available. Each response of data includes related to this
+  data links. Main idea as i got - that client don't need to know what he can do with 
+  resource, actions available in real-time.
+5. Layered architecture. Architecture can contein proxy servers (proxy, gateways) like cashing, load balansers,
+authentificateors, that should stayed invisible for client. (like miscroservices). One layer know about existance
+only further layer, not more, that's give ability to extend layers, and change functionality.
+6. Code (not http code but code, like js) on demand - Java applets, Flash player, Javascript code sent to client
+and executes on client side.
+
+Rest-server and rest-client are:
+Server - is server which responds to request, and provide, and manage the resources.
+(Twitter has twitts server he can share)
+Client - is server that request the data, and gets the response, and operate with it.
+(Your app that request the twitts to show them)
 
 Resourses in REST.
 Unic data, with unic URI. It can be collection of elements, ore one element.
