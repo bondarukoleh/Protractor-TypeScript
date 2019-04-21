@@ -121,7 +121,7 @@ Testing documentation:
  how bug is needed for business - by product owner)
 
 Development methodologies:
-1.Agile (scrum, kanban)
+1. Agile (scrum, kanban)
 2. Waterfall
 3. V - model
 
