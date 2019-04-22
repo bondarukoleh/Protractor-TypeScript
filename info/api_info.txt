@@ -112,7 +112,7 @@ Simple request-response. To get the last udates from server, while you on http, 
 and get updates if they are there. If updates not often to occur - it's ok. But if updates need every second?
 
 HTTP long poling.
-Client sends request to server that ihe needs updates, if no updates, server postpone this request and waits untill
+Client sends request to server that it needs updates, if no updates, server postpone this request and waits untill
 updates occure, or request timeour runned out. If updates here - server sends the response, usualy client imideatly
 sends another long polling request.
 With HTML5 SSE - server sent events - long polling not so popular, sse - gives ability to client (via js) to sing up

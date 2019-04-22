@@ -16,11 +16,10 @@ speak to browser. That's why we have browser drivers depend on OS.
 Basic architecture is:
 Fire some method from test ->
 Selenium binding is fired and it sends request either on Selenium server (proxy, needs JDK),
-or to browser driver (via Json Wire Protocol)->
+or to browser driver (via Json Wire Protocol) ->
 browser driver understands what kind of action it should do and fire api call to browser ->
 browser do the action, and return the result of it to driver -> driver packs resulp in http respond to selenium -> 
 selenium gets the result.
-
 
 Waiters:
 Implicit - set one time, browser.manage().timeouts().implicitlyWait(2000), fired before each findElement
@@ -108,7 +107,7 @@ that we need to test, but don't want to touch origin one - we making some stubs 
 create fake servers.
 
 Mocha is younger, not so full packed, but provide a lot of features to configure. use external assertion libraries.
-Mocha has no spy object methods, but we can use SinonJS spuOn for that purpose, also with it we can create fake servers
+Mocha has no spy object methods, but we can use SinonJS spyOn for that purpose, also with it we can create fake servers
 and a lot of stuff with it. We can create a fake server, so when test will call some predefined methods - fake guy will
 respond as a real one.
 
