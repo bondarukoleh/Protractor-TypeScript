@@ -1,4 +1,4 @@
-*So basicaly Selenium is a browser automation library of language bindings for calls to WebDriver API,
+*So basically Selenium is a browser automation library of language bindings for calls to WebDriver API,
 that's why we have different Seleniums for different languages.
 
 To write tests with js you need selenium-webdriver(WebDriverJS) - common name for Selenium on js.
@@ -7,7 +7,7 @@ Protractor is using selenium-webdriver(WebDriverJS) under the hood.
 So as it was said, selenium is a bindings, WebDriverJS - the JavaScript bindings for the Selenium WebDriver API
 calls (on Json Wire Protocol) to browser driver, which can speak to browser itself and make some actions.
 
-*Json Wire Protocol - protocol that defines a RESTfull web service using JSON over HTTP. It's a set of commands
+*Json Wire Protocol - protocol that defines a RESTful web service using JSON over HTTP. It's a set of commands
 that webdriver (chromedriver, geckodriver, IEdriver) shall implement to be compatible with Selenium.
 
 *Browser driver is a server that uses Json Wire Protocol to speak with Selenium, and using native OS api calls to 
@@ -18,7 +18,7 @@ Fire some method from test ->
 Selenium binding is fired and it sends request either on Selenium server (proxy, needs JDK),
 or to browser driver (via Json Wire Protocol) ->
 browser driver understands what kind of action it should do and fire api call to browser ->
-browser do the action, and return the result of it to driver -> driver packs resulp in http respond to selenium -> 
+browser do the action, and return the result of it to driver -> driver packs result in http respond to selenium -> 
 selenium gets the result.
 
 Waiters:

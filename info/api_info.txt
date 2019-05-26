@@ -1,21 +1,21 @@
 Representational State Transfer - is a software architectural style that defines a set of constraints to be used
 for creating Web services.
 
-Restfull api principles:
+Restful api principles:
 1. Client - Server. Client for UI, and server for backend, data storage - divided logic, so the client and server
-can be developed in parallel and don't affect each other, sinse they talk thru api.
+can be developed in parallel and don't affect each other, since they talk thru api.
 2. Stateless. No data about client context is stored on server side. Each request has enough information to process
-it. Client app - is staful, session state is stored on the client side.
+it. Client app - is stateful, session state is stored on the client side.
 3. Cashing. Clients, and proxy hosts, can cash information. In client's request should be headers that allows or 
 not allows cashing, or to get response from cashed information. Improve performance.
-Can be controled by headers: Date, Last Modified, Expires, Age, Cache-Control(Public, Private, no-cache/no-store,
+Can be controlled by headers: Date, Last Modified, Expires, Age, Cache-Control(Public, Private, no-cache/no-store,
 max-age, proxy-validate).
-4. Uniform Interface between client and server. So server and client can be developed independed, but it should follow
+4. Uniform Interface between client and server. So server and client can be developed independent, but it should follow
 the rules:
-  1) Resource identifiers: Each resourse has unic ID URI (Uniform Resource Identifier) witch is a part of URL (locator)
-   Each resource has his URI and verbs (methods) to interoperate with it. And resourse drive data not data drive
-   resource. Means that resource (dynamic) /latest can hold v1/v2/v3 version of data not the oposite.
-  2) Manipulation resoures thru presentations. Resources is separated from resource presentation, that returned to
+  1) Resource identifiers: Each resource has uniq ID URI (Uniform Resource Identifier) witch is a part of URL (locator)
+   Each resource has his URI and verbs (methods) to interoperate with it. And resource drive data not data drive
+   resource. Means that resource (dynamic) /latest can hold v1/v2/v3 version of data not the opposite.
+  2) Manipulation resources thru presentations. Resources is separated from resource presentation, that returned to
   client. So server can store resource in XML, but return it in JSON, or HTML or any other. So client ask for  
   /latestPresentation -> resource: document -> representation: text + html.
   Content negotiation: means client should tell server what presentation he needs in Accept:text/plain, application/XML
@@ -23,26 +23,26 @@ the rules:
   3) HATEOAS - Hypermedia as the Engine of Application State. Means further actions of client is depend on resource
   state for example, client ask for account state, if account is ok - returned links are - get money, close account etc,
   but if account is overdraft - only "put money in" available. Each response of data includes related to this
-  data links. Main idea as i got - that client don't need to know what he can do with 
+  data links. Main idea as I got - that client don't need to know what he can do with 
   resource, actions available in real-time.
-5. Layered architecture. Architecture can contein proxy servers (proxy, gateways) like cashing, load balansers,
-authentificateors, that should stayed invisible for client. (like miscroservices). One layer know about existance
+5. Layered architecture. Architecture can contain proxy servers (proxy, gateways) like cashing, load balancers,
+authenticators, that should stayed invisible for client. (like miscroservices). One layer know about existence
 only further layer, not more, that's give ability to extend layers, and change functionality.
 6. Code (not http code but code, like js) on demand - Java applets, Flash player, Javascript code sent to client
 and executes on client side.
 
 Rest-server and rest-client are:
 Server - is server which responds to request, and provide, and manage the resources.
-(Twitter has twitts server he can share)
+(Twitter has twits server he can share)
 Client - is server that request the data, and gets the response, and operate with it.
-(Your app that request the twitts to show them)
+(Your app that request the twits to show them)
 
-Resourses in REST.
-Unic data, with unic URI. It can be collection of elements, ore one element.
-URI - is identifier of the resource, for exaple name, URI not always could be a URL, becouse for example name only
+Resources in REST.
+Uniq data, with uniq URI. It can be collection of elements, ore one element.
+URI - is identifier of the resource, for example name, URI not always could be a URL, because for example name only
 gives information about who you are, not where are you. URI can be name and locator and both, but not always.
 URL - is locator, it is address. So all URLs are URIs. URL has following format: Protocol://ServiceName/ResourceType/ResourceID
-URN - Unifor resorce name, it's a URI but presenting only name of resource.
+URN - Uniform resource name, it's a URI but presenting only name of resource.
 
 The query parameter approach works just fine and REST does not stop you from using query parameters. 
 E.g. http://MyService/Persons/1?format=json&encoding=UTF8
@@ -66,9 +66,9 @@ PATCH - we send only id, and field we want to change, that's it.
 
 
 HTTP request has:
-<VERB>, <URI>, <HTTP verion>
+<VERB>, <URI>, <HTTP version>
 <Request header>
-<Request bode>
+<Request body>
 
 Request header - contains the metadata as a collection of key-value pairs of headers and their values.
 These settings contain information about the message and its sender like client type, the formats client supports,
@@ -77,22 +77,22 @@ Request Body - is the actual message content. In a RESTful service, that's where
 sit in a message. There are no tags or markups to denote the beginning or end of a section in an HTML message.
 
 HTTP response has:
-<HTTP verion>, <Response code>
+<HTTP version>, <Response code>
 <Response header>
-<Response bode>
+<Response body>
 
 Response code - 3 digits status of the request.
-1xx - thing is ok so far, processing request (continue, swiching protocol, etc.) 
-2xx - successfull response (200 - ok, 201 - created, etc.)
-3xx - redirection (300 - multiple choise, 301 - moved resource, etc.)
-4xx - client error (400 - bad request, 401 - unauthoraised, 403 - forbitten, 404 - not found, etc.)
+1xx - thing is ok so far, processing request (continue, switching protocol, etc.) 
+2xx - successfully response (200 - ok, 201 - created, etc.)
+3xx - redirection (300 - multiple choice, 301 - moved resource, etc.)
+4xx - client error (400 - bad request, 401 - unauthorized, 403 - forbidden, 404 - not found, etc.)
 5xx - server error (500 - internal server error, 501 - not implemented, etc.)
 Response Header - contains the metadata and settings about the response message.
-Response Body - contains the representation if the request was successfull.
+Response Body - contains the representation if the request was successfully.
 
 SOAP API.
 SOAP envelope - “конверт”, envelope that represent SOAP message. 
-SOAP header - explanes extra information about message, address, format.
+SOAP header - explains extra information about message, address, format.
 SOAP body - message itself, presenting request and response from server. (XML формат)
 Fault element which contains errors and status information.
 
@@ -108,12 +108,12 @@ Websocket
 
 Little history.
 HTTP polling.
-Simple request-response. To get the last udates from server, while you on http, client need to send request to server
+Simple request-response. To get the last updates from server, while you on http, client need to send request to server
 and get updates if they are there. If updates not often to occur - it's ok. But if updates need every second?
 
 HTTP long poling.
-Client sends request to server that it needs updates, if no updates, server postpone this request and waits untill
-updates occure, or request timeour runned out. If updates here - server sends the response, usualy client imideatly
+Client sends request to server that it needs updates, if no updates, server postpone this request and waits until
+updates occur, or request timeout run out. If updates here - server sends the response, usually client immediately
 sends another long polling request.
 With HTML5 SSE - server sent events - long polling not so popular, sse - gives ability to client (via js) to sing up
 himself on some server events. If events occur - server sends updates to client. It's a pushes from server to client.
@@ -125,9 +125,9 @@ Full duplex, real-time connection between client and server. It's not a part of 
 
 Why created?
 1. Clients that needs updates from server each second - needs to create connection each time - with http headers,
-coockie, which is heavy, with https and tls - even more heavier.
+cookies, which is heavy, with https and tls - even more heavier.
 2. Client each time has to tell that he is present and available - extra requests.
-3. Server needs to store updates for client and wait untill he came up.
+3. Server needs to store updates for client and wait until he came up.
 4. Resource and speed degradation.
 
 How it works?

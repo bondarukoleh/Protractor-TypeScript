@@ -1,4 +1,4 @@
-Testing - check consistency of behaviour SW between required and actual, process of increasing SW quality, realized via 
+Testing - check consistency of behavior SW between required and actual, process of increasing SW quality, realized via 
 running scope of tests chosen by some strategy. testing - one of technics of quality control includes phases of planing, 
 (test management), writing tests(test design), running tests (test execution), and analyze results (test analysis).
 
@@ -15,7 +15,7 @@ SDLC - software development life cycle.
 Test process cycle.
 1. Test planning. (testing scope, approach, researching, scheduling)
 2. Test analysis and design. (risks, requirements, features to test, test design)
-3. Test implementation and Execution (develop and prioritise, creating test suites, execution, re-testing, regression)
+3. Test implementation and Execution (develop and priorities, creating test suites, execution, re-testing, regression)
 4. Evaluating exit criteria (reporting, and analysis test results)
 5. Test closure activities (improving, work analysis)
 
@@ -26,9 +26,9 @@ Good requirement characteristics:
 - clarity
 - fullness
 - consistency
-- checkability
+- checkable
 - traceability
-- modifiablity
+- modifiable
 - priority
 
 Traceability Matrices - tool that help to check test coverage.
@@ -53,7 +53,7 @@ Quality criteria for TC:
 1. accurate (checks what it has been created for)
 2. irredundant (short and minimal)
 3. repeatable
-4. traceble
+4. traceable
 5. clear
 6. simple
 7. self standing
