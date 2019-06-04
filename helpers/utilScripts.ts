@@ -1,3 +1,4 @@
+import { browser } from 'protractor';
 
 /* returns string with random characters */
 function makeHash(length = 40, justNumbers = false) {
@@ -29,4 +30,22 @@ const waitForCondition = async (functionToExecute, expectedResult, waitTime = 10
   throw new Error(`${message} with ${waitTime} ms wait time`);
 }
 
-export {waitForCondition, sleep, makeHash}
+const waitElementStyleChange = async function(elementToObserve) {
+  await browser.executeAsyncScript(`
+  const root = arguments[0];
+  console.log(root)
+  const done = arguments[arguments.length - 1]
+  const mutationPromise = function (){
+    return new Promise((resolve, reject) => {
+      new MutationObserver((elem, observer) => {
+        console.log(elem)
+        observer.disconnect()
+        resolve()
+      }).observe(root, {subtree: true, attributes: true})
+    })
+  }
+  mutationPromise().then(() => done(true), () => done(false))
+  `, elementToObserve.getWebElement());
+}
+
+export {waitForCondition, sleep, makeHash, waitElementStyleChange}
