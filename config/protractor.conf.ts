@@ -5,8 +5,10 @@ const {SPEC_REPORTER, SELENIUM_ADDRESS} = process.env
 const ENV_ARGS = minimist(process.argv.slice(2))
 
 const config: Config = {
-  seleniumAddress: SELENIUM_ADDRESS ? SELENIUM_ADDRESS : 'http://localhost:4444/wd/hub',
+  // seleniumAddress: SELENIUM_ADDRESS ? SELENIUM_ADDRESS : 'http://localhost:4444/wd/hub',
   // seleniumSessionId: ,
+  // a bug in protractor, either webdriver-manager@13 or direct
+  // https://github.com/angular/protractor/issues/5225
   directConnect: ENV_ARGS.direct ? true : false,
   framework: 'mocha',
   mochaOpts: {
@@ -20,7 +22,7 @@ const config: Config = {
   multiCapabilities: [
     {
       browserName: 'chrome',
-      maxInstances: 1,
+      maxInstances: 2,
       shardTestFiles: true,
       version: '70',
       chromeOptions: {

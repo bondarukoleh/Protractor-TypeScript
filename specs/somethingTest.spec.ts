@@ -3,10 +3,10 @@ import { expect } from 'chai'
 import { pages } from '../pages/pageObjects'
 import { it, assertion } from '../helpers/decorators'
 
-describe('Suite 1', () => {
+describe('Suite 1211313', () => {
   const { googlePage } = pages
 
-  it('CaseID1', 'Test 1', async () => {
+  it('CaseID1', 'Test 1313131', async () => {
     await googlePage.getGoogle('STRING PARAM',
      {asd: '12123', sad: {asdas: 'asdas'}, afsf: ['asda', 'asdas']}, element(by.id('main')))
     await browser.sleep(2000)
