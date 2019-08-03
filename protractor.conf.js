@@ -1,4 +1,4 @@
-require('ts-node').register({app: './'})
+require('ts-node/register')
 
 /* in runtime when ts-node compile .ts => .js
  output directory from tsconfig becomes root directory
