@@ -91,6 +91,8 @@ Response Header - contains the metadata and settings about the response message.
 Response Body - contains the representation if the request was successfully.
 
 SOAP API.
+SOAP is a protocol based on HTTP. It doesn't has some resource urls, it has @WebService.
+Also it communicates with XML, so there no JSON there.
 SOAP envelope - “конверт”, envelope that represent SOAP message. 
 SOAP header - explains extra information about message, address, format.
 SOAP body - message itself, presenting request and response from server. (XML формат)
