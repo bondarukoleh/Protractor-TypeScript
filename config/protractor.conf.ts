@@ -2,14 +2,16 @@ import {browser, Config} from 'protractor'
 import * as minimist from 'minimist'
 
 const {SPEC_REPORTER, SELENIUM_ADDRESS} = process.env
+console.log('YO');
+console.log(SPEC_REPORTER);
 const ENV_ARGS = minimist(process.argv.slice(2))
 
 const config: Config = {
-  // seleniumAddress: SELENIUM_ADDRESS ? SELENIUM_ADDRESS : 'http://localhost:4444/wd/hub',
+  seleniumAddress: SELENIUM_ADDRESS ? SELENIUM_ADDRESS : 'http://localhost:4444/wd/hub',
   // seleniumSessionId: ,
   // a bug in protractor, either webdriver-manager@13 or direct
   // https://github.com/angular/protractor/issues/5225
-  directConnect: ENV_ARGS.direct ? true : false,
+  directConnect: !!ENV_ARGS.direct,
   framework: 'mocha',
   mochaOpts: {
     timeout: 350 * 1000,
