@@ -2,8 +2,6 @@ import {browser, Config} from 'protractor'
 import * as minimist from 'minimist'
 
 const {SPEC_REPORTER, SELENIUM_ADDRESS} = process.env
-console.log('YO');
-console.log(SPEC_REPORTER);
 const ENV_ARGS = minimist(process.argv.slice(2))
 
 const config: Config = {

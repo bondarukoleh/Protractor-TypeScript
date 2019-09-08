@@ -12,6 +12,7 @@
     "test": "protractor protractor.conf.js",
     "test:local": "protractor protractor.conf.js --local",
     "test:localDirect": "protractor protractor.conf.js --local --direct",
+    "test:direct": "protractor protractor.conf.js --direct",
     "tsc": "tsc",
     "tscw": "tsc -w",
     "validate": "npm ls"
