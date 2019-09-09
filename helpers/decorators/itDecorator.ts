@@ -18,7 +18,7 @@ function getItCallBackDecorated(testCaseID: string, itName: string, fn: any) {
 }
 
 type ItType = (testCaseID: string, itName: string, fn: any) => any
-interface ItDecorator {
+interface ITestDecorator {
   (testCaseID: string, itName: string, fn: any): any
   only: ItType
   skip: ItType
@@ -26,7 +26,7 @@ interface ItDecorator {
 
 const itDecorated = (function (testCaseID, itName, fn) {
   it(itName, getItCallBackDecorated(testCaseID, itName, fn))
-}) as ItDecorator
+}) as ITestDecorator
 
 itDecorated.only = function (testCaseID: string, itName: string, fn: any) {
   it.only(itName, getItCallBackDecorated(testCaseID, itName, fn))
