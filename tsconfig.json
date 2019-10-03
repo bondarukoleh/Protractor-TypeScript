@@ -3,8 +3,10 @@
     "module": "commonjs",
     "target": "es2017",
     "sourceMap": true,
+    "rootDir": "./",
     "outDir": "build",
     "experimentalDecorators": true,
+    "removeComments": true,
     "lib": [
       "dom",
       "es2017"
