@@ -26,10 +26,5 @@
     "ordered-imports": false,
     "space-before-function-paren": false,
     "no-empty-interface": true
-  },
-  "rulesDirectory": [
-    "./pages",
-    "./specs",
-    "./api"
-  ]
+  }
 }
