@@ -1,8 +1,10 @@
-Testing - check consistency of behavior SW between required and actual, process of increasing SW quality, realized via 
-running scope of tests chosen by some strategy. testing - one of technics of quality control includes phases of planing, 
-(test management), writing tests(test design), running tests (test execution), and analyze results (test analysis).
+Testing - check consistency of behavior SW between required and actual, process of increasing SW quality,
+realized via running scope of tests chosen by some strategy. testing - one of technics of quality control
+includes phases of planing (test management), writing tests (test design), running tests (test execution),
+and analyze results (test analysis).
 
-Software quality - characteristic that includes consistency of SW behaviour compared with created and supposed requirements.
+Software quality - characteristic that includes consistency of SW behaviour compared with created and
+supposed requirements.
 
 SDLC - software development life cycle. 
 1. Requirement analysis.
@@ -15,7 +17,8 @@ SDLC - software development life cycle.
 Test process cycle.
 1. Test planning. (testing scope, approach, researching, scheduling)
 2. Test analysis and design. (risks, requirements, features to test, test design)
-3. Test implementation and Execution (develop and priorities, creating test suites, execution, re-testing, regression)
+3. Test implementation and Execution (develop and priorities, creating test suites,
+ execution, re-testing, regression)
 4. Evaluating exit criteria (reporting, and analysis test results)
 5. Test closure activities (improving, work analysis)
 

@@ -31,9 +31,9 @@ Explicit - browser.wait(() => myElement.isPresent(), 5000, â€˜Element not foundâ
 there are some default predicates - ExpectedConditions in selenium.
 You need to set up it each time before you need to wait for some condition, but it much more flexible.
 Nice: use it.
-Bad: don't mess it with implicit waiter. There are a tricky situation when implicit wait is 4 second, and explicit is
-5, when implicit waiter done, it will see that explicit is not done and goes another round, which will cost us
-extra 3 seconds to wait.
+Bad: don't mess it with implicit waiter. There are a tricky situation when implicit wait is 4 second, and
+explicit is 5, when implicit waiter done, it will see that explicit is not done and goes another round, which
+will cost us extra 3 seconds to wait.
 
 Exceptions:
 NoSuchElementException
