@@ -64,6 +64,7 @@ PUT - here we should send all data of resource, with field we want to change, if
   it, if there was - re-write it.
 PATCH - we send only id, and field we want to change, that's it.
 
+HTTP - hyper text transfer protocol
 
 HTTP request has:
 <VERB>, <URI>, <HTTP version>
@@ -75,6 +76,21 @@ These settings contain information about the message and its sender like client 
 format type of the message body, cache settings for the response, and a lot more information.
 Request Body - is the actual message content. In a RESTful service, that's where the representations of resources
 sit in a message. There are no tags or markups to denote the beginning or end of a section in an HTML message.
+
+request:
+----------------------
+POST /booking HTTP 1.1  - verb, resource, protocol
+----------------------
+Host: api.booking.com   - headers
+Accept: application/json (means I want back data in json)
+Content-type: application/json (means I send you the data in json)
+Content-length: 136
+----------------------
+{
+  "room_id": "400",     - body
+  "breakfast":"true"
+}
+----------------------
 
 HTTP response has:
 <HTTP version>, <Response code>
@@ -90,9 +106,26 @@ Response code - 3 digits status of the request.
 Response Header - contains the metadata and settings about the response message.
 Response Body - contains the representation if the request was successfully.
 
+response
+----------------------
+HTTP 1.1 201 Created            - verb, status code
+----------------------
+Content-location: /bookings/aij3no2i3   - headers
+Content-type: application/json
+Content-length: 192
+----------------------
+{
+  "id": "aij3no2i3",             - body
+  "status":"created"
+}
+----------------------
+
 SOAP API.
 SOAP is a protocol based on HTTP. It doesn't has some resource urls, it has @WebService.
 Also it communicates with XML, so there no JSON there.
+So the main difference - is that REST - is a style of API architecture, and SOAP - is a network protocol.
+REST - doesn't tied with HTTP - it can use any protocol based with URL.
+
 SOAP envelope - “конверт”, envelope that represent SOAP message. 
 SOAP header - explains extra information about message, address, format.
 SOAP body - message itself, presenting request and response from server. (XML формат)
@@ -148,37 +181,6 @@ Cons:
 
 npm library - socket.io.
 
-HTTP - hyper text transfer protocol
-
-request:
-----------------------
-POST /booking HTTP 1.1  - verb, resource, protocol
-----------------------
-Host: api.booking.com   - headers
-Accept: application/json (means I want back data in json)
-Content-type: application/json (means I send you the data in json)
-Content-length: 136
-----------------------
-{
-  "room_id": "400",     - body
-  "breakfast":"true"
-}
-----------------------
-
-response
-----------------------
-HTTP 1.1 201 Created            - verb, status code
-----------------------
-Content-location: /bookings/aij3no2i3   - headers
-Content-type: application/json
-Content-length: 192
-----------------------
-{
-  "id": "aij3no2i3",             - body
-  "status":"created"
-}
-----------------------
-
 PATCH example
 ----------------------
 PATCH /booking/aij3no2i3 HTTP 1.1   - verb, resource, protocol
@@ -222,12 +224,11 @@ DELETE - send in header URI - response 200 OK, idempotent but remember that stat
  can: 200/204/404/410 410(Preconditions failed, when you tried to search some resource and search failed for ex.)
 
 Headers:
-Content-location: location of created resource, URI, we can use it to interoperate with this resource, instead of getting it
-  once again, since POST returned URI and created resource in POST body - we don't need GET.
+Content-location: location of created resource, URI, we can use it to interoperate with this resource, instead of
+getting it once again, since POST returned URI and created resource in POST body - we don't need GET.
 Last-modified: when it was last updated.
 Date: when response was generated.
 E-tag: hash of resource, instead of sending the whole representation - we can response with hash.
-
 
 Few restrictions:
 - unknown headers ignored
