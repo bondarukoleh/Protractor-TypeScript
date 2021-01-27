@@ -74,9 +74,9 @@ Testing types:
 1. Functional:
     - GUI
     - Functional testing
-    - Security
     - Interoperability (configuration, installation, cross browser, cross platform)
 2. Non-functional
+    - Security
     - Performance:
         1) Load (normal and variable load)
         2) Stress (max load)
@@ -94,7 +94,7 @@ By code execution:
 - Static
 - Dynamic
 
-Test stages:
+Test levels:
 - Unit
 - Integration
 - System
